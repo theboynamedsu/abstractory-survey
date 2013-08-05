@@ -5,7 +5,7 @@
  *
  * @author Suhmayah Banda <suhmayah.banda@digitallifesciences.co.uk>
  */
-abstract class FormInput extends FormElement {
+abstract class FormInput extends FormComponent {
 
     /**
      * The field name of the input element
@@ -32,14 +32,6 @@ abstract class FormInput extends FormElement {
 
     private function init() {
         $this->attributes = array();
-    }
-
-    public function setAttributes(array $attributes) {
-        $this->attributes = $attributes;
-    }
-
-    public function setAttribute($key, $value) {
-        $this->attributes[$key] = $value;
     }
     
 }

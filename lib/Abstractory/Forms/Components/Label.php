@@ -5,7 +5,7 @@
  *
  * @author Suhmayah Banda <suhmayah.banda@digitallifesciences.co.uk>
  */
-class Label extends FormElement {
+class Label extends FormComponent {
 
     /**
      * The value of this label

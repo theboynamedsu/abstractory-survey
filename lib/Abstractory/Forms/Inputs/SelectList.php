@@ -55,15 +55,16 @@ class SelectList extends FormInput {
 	}
 
     public function render() {
-    	$inputTpl = "<select name='%s' %s>";
-    	$inputTpl.= "\n\t%s";
-		$inputTpl.=	"\n</select>";
+        $inputTpl = "<select name='%s' %s>";
+        $inputTpl.= "\n\t%s";
+        $inputTpl.= "\n</select>";
+
     	$tplData = array(
     		$this->name,
     		$this->renderAttributes(),
     		$this->renderOptions(),
-		);
-		return vsprintf($inputTpl, $tplData);
+        );
+        return vsprintf($inputTpl, $tplData);
     }
 
     protected function renderOptions() {
