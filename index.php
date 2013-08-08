@@ -8,7 +8,6 @@ require_once "lib/Abstractory/Forms/Components/Label.php";
 require_once "lib/Abstractory/Forms/Inputs/InputElement.php";
 
 $inputTypes = array(
-    'InputElement',
     'Button',
     'Checkbox',
     'FileInput',
