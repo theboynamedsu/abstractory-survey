@@ -44,7 +44,7 @@ class Label extends FormComponent {
             $this->renderAttributes(),
             $this->value,
         );
-        $label = vprintf($labelTpl, $labelData);
+        $label = vsprintf($labelTpl, $labelData);
         return $label;
     }
     

@@ -2,8 +2,8 @@
 
 class Form extends FormComponent {
 
-    const METHOD_POST = "post";
-    const METHOD_GET = "get";
+    const METHOD_POST = "POST";
+    const METHOD_GET = "GET";
 
     const TARGET_SELF = '_self';
     const TARGET_BLANK = '_blank';
@@ -47,7 +47,7 @@ class Form extends FormComponent {
 
     public function getMethod() {
         if (is_null($this->method)) {
-            return self::METHOD_POST;
+            return self::METHOD_GET;
         }
         return $this->method;
     }
@@ -62,19 +62,23 @@ class Form extends FormComponent {
 
     public function setEnctype($enctype) {
         switch (strtolower($enctype)) {
-            self::ENCTYPE_DEFAULT:
-            self::ENCTYPE_MULTIPART_FORM_DATA:
-            self::PLAIN_TEXT:
+            case self::ENCTYPE_DEFAULT:
+            case self::ENCTYPE_MULTIPART_FORM_DATA:
+            case self::PLAIN_TEXT:
                 $this->enctype = $enctype;
                 break;
             default:
-                $throw new Exception("Encoding type not supported");
+                throw new Exception("Encoding type not supported");
                 break;
         }
     }
 
-    public function add($index, FormElement $element) {
-	$this->components[$index] = $element;
+    public function getEnctype() {
+        return $this->enctype;
+    }
+
+    public function add($index, FormComponent $component) {
+	$this->components[$index] = $component;
     }
 
     public function remove($index) {
@@ -88,6 +92,25 @@ class Form extends FormComponent {
         $form.= $this->renderComponents();
         $form.= "</form>";
         return $form;
+    }
+
+    protected function renderAttributes() {
+        $this->attributes['method'] = $this->getMethod();
+        $this->attributes['action'] = $this->getAction();
+        if (!is_null($this->getEnctype())) {
+            $this->attributes['enctype'] = $this->getEnctype();
+        }
+        return parent::renderAttributes();
+    }
+    
+    protected function renderComponents() {
+        $renderedComponents = array();
+        if (count($this->components)) {
+            foreach ($this->components as $component) {
+                $renderedComponents[] = $component->render();
+            }
+        }
+        return "\n\t".implode("\n\t", $renderedComponents)."\n";
     }
 
 }

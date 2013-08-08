@@ -1,10 +1,5 @@
 <?php
 
-require_once "../Components/FormComponent.php";
-require_once "../Components/FormElement.php";
-require_once "../Components/FormInput.php";
-require_once "InputElement.php";
-
 /**
  * TextInput
  *
@@ -18,5 +13,4 @@ class TextInput extends InputElement {
     
 }
 
-$input = new TextInput("test", array('value' => 'something', 'onclick' => 'alert("hello world")'));
-echo $input->render();
+
